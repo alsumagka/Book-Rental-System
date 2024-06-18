@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Rental System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: #333;
+        }
+
+        header {
+            width: 100%;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header div {
+            display: flex;
+            align-items: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        header a:hover {
+            color: #ddd;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 16px;
+            margin-right: 20px;
+        }
+
+        main {
+            margin-top: 120px; /* to offset fixed header */
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 32px;
+            color: #333;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.2s;
+            margin: 10px 0;
+        }
+
+        a.button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .welcome-message {
+            font-size: 18px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span>Book Rental System</span>
+        <div>
+            <p>WELCOME, <%= @user.firstname %></p>
+            <a href="/user/logout">LOGOUT</a>
+        </div>
+    </header>
+    <main>
+        <h1>WELCOME TO BOOK RENTAL SYSTEM</h1>
+        <a href="/user/status/<%= @user.id %>" class="button">VIEW STATUS OF RENTED BOOKS</a>
+        <a href="/user/books/<%= @user.id %>" class="button">VIEW AVAILABLE BOOKS TO RENT</a>
+    </main>
+</body>
+</html>

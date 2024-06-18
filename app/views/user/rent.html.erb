@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent a Book</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        a.button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        /* Form styling */
+        form {
+            width: 100%;
+            max-width: 500px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <a href="/user/books/<%= @user.id %>" class="button">BACK</a>
+    <form action="/user/magrent" method="post" id="myForm">
+        <label for="fname">Firstname</label>
+        <input type="text" id="fname" name="fname" value="<%= @user.firstname %>" readonly>
+
+        <label for="lname">Lastname</label>
+        <input type="text" id="lname" name="lname" value="<%= @user.lastname %>" readonly>
+
+        <label for="cont">Contact</label>
+        <input type="text" id="cont" name="cont" value="<%= @user.contact %>" readonly>
+
+        <label for="bookTitle">Book Title</label>
+        <input type="text" id="bookTitle" name="book" value="<%= @hulam.title %>" readonly>
+
+        <label for="bookPrice">Book Price</label>
+        <input type="text" id="bookPrice" name="price" value="<%= @hulam.price %>" readonly>
+
+        <label for="borrowDate">Borrow Date</label>
+        <input type="date" id="borrowDate" name="date" required>
+
+        <label for="returnDate">Return Date</label>
+        <input type="date" id="returnDate" name="rdate" required>
+
+        <input type="submit" value="Submit" onclick="submitForm()">
+    </form>
+
+    <script>
+        function submitForm() {
+            document.getElementById("myForm").submit();
+    
+            window.location.href = "/user/dashboard/<%= @user.id %>";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Rental Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a.button:hover {
+            background-color: #45a049;
+        }
+
+        .table-container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+
+        .message {
+            font-style: italic;
+            color: #666;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Rental Dashboard</h1>
+    <a href="/user/dashboard/<%= @account.id %>" class="button">BACK</a>
+
+    <div class="table-container">
+        <h1>Pending Rentals</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Price</th>
+                    <th>Rent Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if @books.empty? %>
+                    <tr>
+                        <td colspan="5" class="message">No pending rentals</td>
+                    </tr>
+                <% else %>
+                    <% @books.each do |book| %>
+                        <tr>
+                            <td><%= book.title %></td>
+                            <td>$<%= book.price %></td>
+                            <td><%= book.start %></td>
+                            <td><%= book.end %></td>
+                            <td><%= book.status %></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-container">
+        <h1>Approved Rentals</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Price</th>
+                    <th>Rent Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if @bookss.empty? %>
+                    <tr>
+                        <td colspan="5" class="message">No approved rentals</td>
+                    </tr>
+                <% else %>
+                    <% @bookss.each do |bookk| %>
+                        <tr>
+                            <td><%= bookk.title %></td>
+                            <td>$<%= bookk.price %></td>
+                            <td><%= bookk.start %></td>
+                            <td><%= bookk.end %></td>
+                            <td><%= bookk.status %></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-container">
+        <h1>Rental History</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Price</th>
+                    <th>Rent Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if @booksss.empty? %>
+                    <tr>
+                        <td colspan="5" class="message">No rental history</td>
+                    </tr>
+                <% else %>
+                    <% @booksss.each do |bookkk| %>
+                        <tr>
+                            <td><%= bookkk.title %></td>
+                            <td>$<%= bookkk.price %></td>
+                            <td><%= bookkk.start %></td>
+                            <td><%= bookkk.end %></td>
+                            <td><%= bookkk.status %></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

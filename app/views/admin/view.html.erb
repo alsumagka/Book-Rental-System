@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Rental System Admin</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #e9e9e9;
+        }
+
+        /* Link styling */
+        .button, .admin-link {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 10px 5px;
+        }
+
+        .button:hover, .admin-link:hover {
+            background-color: #45a049;
+        }
+
+        .logout {
+            color: #c0392b;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            text-decoration: underline;
+        }
+
+        .welcome {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .admin-links {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .login-message {
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: center;
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <% if @admin %>
+        <div class="welcome">
+            Welcome, Admin <%= @admin.firstname %>  
+            <%= link_to "Logout", logout_path, method: :delete, class: "logout" %>
+        </div>
+        <div class="admin-links">
+            <a href="/admin/pending" class="admin-link">VIEW PENDING</a>
+            <a href="/admin/approved" class="admin-link">VIEW APPROVED</a>
+            <a href="/admin/history" class="admin-link">VIEW HISTORY</a>
+        </div>
+        <a href="/admin/add" class="button">ADD</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Genre</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if @libro.empty? %>
+                <tr>
+                    <td colspan="5" style="text-align: center; color: #777;">No books available</td>
+                </tr>
+                <% else %>
+                <% @libro.each do |libro| %>
+                <tr>
+                    <td><%= libro.title %></td>
+                    <td><%= libro.desc %></td>
+                    <td><%= libro.genre %></td>
+                    <td>$<%= libro.price %></td>
+                    <td><%= libro.status %></td>
+                </tr>
+                <% end %>
+                <% end %>
+            </tbody>
+        </table>
+        <% else %>
+        <p class="login-message">Please Login</p>
+        <% end %>
+    </div>
+</body>
+</html>
